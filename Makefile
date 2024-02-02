@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 15:48:57 by ctruchot          #+#    #+#              #
-#    Updated: 2024/02/02 19:12:17 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/02/02 19:33:19 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,13 @@ $(NAME_LIST): $(OBJ_LIST)
 
 clean:
 	rm -f $(OBJ)
+	rm -f $(OBJ_LIST)
+
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(NAME_LIST)
+
 
 re: fclean
 	$(MAKE) $(NAME)
