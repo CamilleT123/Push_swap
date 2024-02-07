@@ -6,45 +6,73 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:06 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/02 19:08:59 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:58:37 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
-
-typedef struct s_stack
+typedef struct s_element
 {
-	int *a;
-	int sizea;
-	int *b;
-	int sizeb;
-} t_stack;
+	long int			nb;
+	int					final_index;
+	int					current_position;
+	// int cost;
+	struct s_element	*next;
+}						t_element;
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+// necessaire d'avoir une tete de liste de type different ?
+// possible de faire un pointeur head_a sur le premier element
+// et tail_a sur le dernier ?
 
-int		ft_atoi(const char *nptr);
+typedef struct s_list
+{
+	int					size;
+	t_element			*first;
+	t_element			*last;
+}						t_list;
 
-int		ft_double_int_in_tab(int *tab, int size);
+int						check_double(t_list *stack);
+int						check_int(char **av);
+int						check_letters(char **av);
+long int				ft_atoi(const char *nptr);
+char					**ft_split(char const *s, char c);
 
-int		check_error(int *tab, int size);
-int		*fill_args_in_pile(int ac, char **av, t_stack *stack);
-int		*fill_string_in_pile(char *av, t_stack *stack);
+t_element				*fill_args_in_stack_a(int ac, char **av);
+t_list					*stack_a_init(int ac, char **av);
+t_list					*stack_b_init(void);
 
-void ft_swap_a(t_stack *stack);
-void ft_rotate_a(t_stack *stack);
-void ft_reverse_rotate_a(t_stack *stack);
+int						check_order(t_element *element);
+int						order_three_a(t_list *stack);
 
+int						ft_swap_a(t_list *stack);
+int						ft_swap_b(t_list *stack);
+int						ft_ss(t_list *stack_a, t_list *stack_b);
+int						ft_push_a(t_list *stack_a, t_list *stack_b);
+int						ft_push_b(t_list *stack_a, t_list *stack_b);
+int						ft_rotate_a(t_list *stack);
+int						ft_rotate_b(t_list *stack);
+int						ft_rr(t_list *stack_a, t_list *stack_b);
+int						ft_reverse_rotate_a(t_list *stack);
+int						ft_reverse_rotate_b(t_list *stack);
+int						ft_rrr(t_list *stack_a, t_list *stack_b);
 
-char	**ft_split(char const *s, char c);
-// static char	*ft_createlines(const char *s, char c);
-// static char	**ft_freetab(char **tab);
-// static int	ft_countwords(const char *s, char c);
+t_element				*ft_lstnew(int nb);
+t_element				*ft_lstlast(t_element *lst);
+t_element				*ft_lstalmostlast(t_element *lst);
+void					ft_lstadd_back(t_element **lst, t_element *new);
+int						ft_lstsize(t_element *lst);
+
+void					ft_putchar_fd(char c, int fd);
+void					ft_putstr_fd(char *s, int fd);
+void					print_list(t_list *stack_a);
+
+int						free_list(t_list *stack_a);
+int						free_tab(char **tab);
 
 #endif

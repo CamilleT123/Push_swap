@@ -6,13 +6,11 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:52:37 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/02 19:07:31 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:36:55 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "push_swap_list.h"
-
 
 static int	ft_countwords(const char *s, char c)
 {
@@ -72,12 +70,17 @@ char	**ft_split(char const *s, char c)
 	unsigned int	i;
 	char			**tab;
 
-	i = 0;
+	i = 1;
 	if (!s)
 		return (NULL);
-	tab = malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
+	tab = malloc(sizeof(char *) * (ft_countwords(s, c) + 2));
+
 	if (!tab)
 		return (NULL);
+	tab[0] = malloc(sizeof(char *));
+	if (!tab[0])
+		return (NULL);
+	tab[0][0] = '\0';
 	while (*s)
 	{
 		while (*s && *s == c)

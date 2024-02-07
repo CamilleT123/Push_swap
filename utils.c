@@ -6,13 +6,11 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:11:47 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/02 19:07:47 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:25:42 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "push_swap_list.h"
-
 #include <stdio.h>
 
 void	ft_putchar_fd(char c, int fd)
@@ -34,29 +32,73 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-int	ft_double_int_in_tab(int *tab, int size)
+
+void	print_list(t_list *stack_a)
+{
+	t_element	*actuel;
+
+	if (stack_a == NULL)
+	{
+		exit(EXIT_FAILURE);
+	}
+	actuel = stack_a->first;
+	while (actuel != NULL)
+	{
+		printf("%ld -> ", actuel->nb);
+		actuel = actuel->next;
+	}
+	printf("NULL\n");
+}
+
+long int	ft_atoi(const char *nptr)
+{
+	long int	r;
+	int			rneg;
+	int			i;
+
+	r = 0;
+	i = 0;
+	rneg = 1;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			rneg = rneg * -1;
+		i++;
+	}
+	while (nptr[i])
+	{
+		r = r * 10 + nptr[i] - 48;
+		i++;
+	}
+	if (rneg == -1)
+		r = r * -1;
+	if (r > 2147483647 || r < -2147483648)
+		return (2147483649);
+	return (r);
+}
+
+void print_tab(char **tab)
+{
+	int i = 0;
+	while (tab[i])
+	{
+		printf("tab%s", tab[i]);
+		i++;
+	}
+}
+
+int	free_tab(char **tab)
 {
 	int	i;
-	int	j;
 
-	i = 1;
-	j = 0;
-	// printf("size%d\n", size);
-	while (i < size)
+	i = 0;
+	while (tab[i] != NULL)
 	{
-		while (j < i)
-		{
-			if (tab[i] == tab[j])
-				// {
-				// 	printf("tab[%d]= %d\n", i, tab[i]);
-				// 	printf("tab[%d]= %d\n", j, tab[j]);
-				return (ft_putstr_fd("Error\n", 2), 1);
-			// }
-			else
-				j++;
-		}
+		free(tab[i]);
 		i++;
-		j = 0;
 	}
+	free(tab);
 	return (0);
 }
