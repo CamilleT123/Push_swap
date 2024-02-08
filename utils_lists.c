@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:44:07 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 15:18:56 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:38:15 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_element	*ft_lstnew(int nb)
 	if (element == NULL)
 		return (ft_putstr_fd("Error malloc\n", 2), NULL); // pertinnt ?
 	element->nb = nb;
+	init_nodes_to_zero(element);
 	element->next = NULL;
 	return (element);
 }

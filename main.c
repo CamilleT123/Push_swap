@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:34:09 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 18:04:27 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:31:04 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main(int ac, char **av)
 		ft_swap_a(stack_a);
 	if (stack_a->size == 3)
 		order_three_a(stack_a);
-	// if (stack_a->size > 3)
-		// algo
+	if (stack_a->size > 3)
+		ft_algo(stack_a, stack_b);
 	print_list(stack_a);
 	print_list(stack_b);
 	free_list(stack_a);

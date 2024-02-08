@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:06 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 17:58:37 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:36:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <stdbool.h> 
 
 typedef struct s_element
 {
 	long int			nb;
-	int					final_index;
 	int					current_position;
-	// int cost;
+	int					cost_to_top;
+	bool				above_median;
+	struct s_element	*target_node;
 	struct s_element	*next;
 }						t_element;
 
@@ -34,7 +36,7 @@ typedef struct s_list
 {
 	int					size;
 	t_element			*first;
-	t_element			*last;
+	// t_element			*last;
 }						t_list;
 
 int						check_double(t_list *stack);
@@ -46,9 +48,13 @@ char					**ft_split(char const *s, char c);
 t_element				*fill_args_in_stack_a(int ac, char **av);
 t_list					*stack_a_init(int ac, char **av);
 t_list					*stack_b_init(void);
+int init_nodes_to_zero(t_element *element);
+
 
 int						check_order(t_element *element);
 int						order_three_a(t_list *stack);
+int ft_algo(t_list *stack_a, t_list *stack_b);
+
 
 int						ft_swap_a(t_list *stack);
 int						ft_swap_b(t_list *stack);

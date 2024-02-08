@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:23:42 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 17:55:41 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:41:34 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ t_list	*stack_b_init(void)
 	stack_b->first = NULL;
 	stack_b->size = ft_lstsize(stack_b->first);
 	return (stack_b);
+}
+int init_nodes_to_zero(t_element *element)
+{
+
+	element->current_position = 0;
+	element->cost_to_top = 0;
+	element->above_median = false;
+	element->target_node = NULL;
+	return (0);
 }
 
 t_list	*stack_a_init(int ac, char **av)
