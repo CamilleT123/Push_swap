@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:11:47 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 17:25:42 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:03:12 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-
-void	print_list(t_list *stack_a)
+void	print_list(t_list *stack)
 {
 	t_element	*actuel;
 
-	if (stack_a == NULL)
+	if (stack == NULL)
 	{
-		exit(EXIT_FAILURE);
+		return(ft_putstr_fd("LA", 2));
 	}
-	actuel = stack_a->first;
+	// printf("dd%ld\n", stack->first->nb);
+	actuel = stack->first;
 	while (actuel != NULL)
 	{
 		printf("%ld -> ", actuel->nb);
@@ -79,9 +79,11 @@ long int	ft_atoi(const char *nptr)
 	return (r);
 }
 
-void print_tab(char **tab)
+void	print_tab(char **tab)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (tab[i])
 	{
 		printf("tab%s", tab[i]);

@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 15:48:57 by ctruchot          #+#    #+#              #
-#    Updated: 2024/02/07 17:59:30 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/02/09 12:36:41 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC = main.c \
 		instructions3.c \
 		clear.c \
 		ft_split.c \
-		algo.c
+		order_list.c \
+		fill_info.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -37,7 +38,6 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) $< -c -o $@
 
-	
 clean:
 	rm -f $(OBJ)
 

@@ -6,23 +6,25 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:06 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/08 18:36:58 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:38:06 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdbool.h> 
+#include <limits.h>
 
 typedef struct s_element
 {
 	long int			nb;
 	int					current_position;
 	int					cost_to_top;
+	int					cost_to_target;
 	bool				above_median;
 	struct s_element	*target_node;
 	struct s_element	*next;
@@ -35,8 +37,8 @@ typedef struct s_element
 typedef struct s_list
 {
 	int					size;
+	t_element			*biggest;
 	t_element			*first;
-	// t_element			*last;
 }						t_list;
 
 int						check_double(t_list *stack);
@@ -48,12 +50,24 @@ char					**ft_split(char const *s, char c);
 t_element				*fill_args_in_stack_a(int ac, char **av);
 t_list					*stack_a_init(int ac, char **av);
 t_list					*stack_b_init(void);
-int init_nodes_to_zero(t_element *element);
-
+int						init_nodes_to_zero(t_element *element);
 
 int						check_order(t_element *element);
 int						order_three_a(t_list *stack);
-int ft_algo(t_list *stack_a, t_list *stack_b);
+int						ft_order_list(t_list *stack_a, t_list *stack_b);
+int						stack_b_fill_info(t_list *stack_b, t_list *stack_a);
+int						stack_a_fill_info(t_list *stack_a);
+int						calculate_cost_to_top(t_element *element,
+							t_list *stack);
+int						identify_current_position(t_element *element_x,
+							t_element *element);
+t_element				*identify_target_node(t_element *element_b,
+							t_element *element_a);
+bool					is_above_median(t_element *element, t_list *stack);
+t_element	*identify_biggest(t_list *stack);
+t_element	*is_max(t_list *stack);
+int	calculate_cost_to_target(t_element *element);
+
 
 
 int						ft_swap_a(t_list *stack);
@@ -77,7 +91,6 @@ int						ft_lstsize(t_element *lst);
 void					ft_putchar_fd(char c, int fd);
 void					ft_putstr_fd(char *s, int fd);
 void					print_list(t_list *stack_a);
-
 int						free_list(t_list *stack_a);
 int						free_tab(char **tab);
 

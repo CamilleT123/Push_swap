@@ -6,57 +6,50 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:23:42 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/08 18:41:34 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:21:54 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*stack_b_init(void)
-{
-	t_list	*stack_b;
-
-	stack_b = malloc(sizeof(*stack_b));
-	if (stack_b == NULL)
-	{
-		exit(EXIT_FAILURE);
-	}
-	stack_b->first = NULL;
-	stack_b->size = ft_lstsize(stack_b->first);
-	return (stack_b);
-}
-int init_nodes_to_zero(t_element *element)
-{
-
-	element->current_position = 0;
-	element->cost_to_top = 0;
-	element->above_median = false;
-	element->target_node = NULL;
-	return (0);
-}
+// initialize stack_a list head, checks the errors in the arguments
+//  and each nodes of the list based on the arguments 
+// and the fill_args_in_stack_a function
 
 t_list	*stack_a_init(int ac, char **av)
 {
 	t_list	*stack_a;
 
+	stack_a = NULL;
 	if (check_letters(av) != 0)
 		return (NULL);
 	if (check_int(av) != 0)
 		return (NULL);
 	stack_a = malloc(sizeof(*stack_a));
 	if (stack_a == NULL)
-		exit(EXIT_FAILURE); // 		return (NULL);
+	{
+		return(ft_putstr_fd("LA", 2), NULL);
+	}	
 	stack_a->first = NULL;
 	stack_a->first = fill_args_in_stack_a(ac, av);
+	// print_list(stack_a);
 	if (check_double(stack_a) != 0)
 	{
 		free_list(stack_a);
 		free_tab(av);
 		exit (1);
 	}
+	// printf("%ld\n", stack_a->first->nb);
+	// printf("%ld\n", stack_a->first->next->nb);
+	// printf("%ld\n", stack_a->first->next->next->nb);
+	// stack_a->biggest = identify_biggest(stack_a);
 	stack_a->size = ft_lstsize(stack_a->first);
 	return (stack_a);
 }
+
+// fill the nodes with the numbers in argument
+// initiates the rest of the data to 0 with init_nodes_to_zero
+//  included in the lstnew
 
 t_element	*fill_args_in_stack_a(int ac, char **av)
 {
@@ -67,6 +60,7 @@ t_element	*fill_args_in_stack_a(int ac, char **av)
 	i = 1;
 	j = 0;
 	element = ft_lstnew(ft_atoi(av[i]));
+	// printf("element=%ld\n", element->nb);
 	if (element == NULL)
 		return (NULL);
 	while (i < ac - 1)
@@ -74,110 +68,59 @@ t_element	*fill_args_in_stack_a(int ac, char **av)
 		i++;
 		ft_lstadd_back(&element, ft_lstnew(ft_atoi(av[i])));
 	}
+	// printf("element=%ld\n", element->nb);
 	return (element);
 }
 
-// void	fill_string_in_pile(char *av, t_stack *stack)
-// {
-// 	int		i;
-// 	char	**tab;
-// 	int		j;
+// initiates the rest of the data of the nodes to 0
 
-// 	j = 0;
-// 	i = 0;
-// 	tab = ft_split(&av[i], ' ');
+int	init_nodes_to_zero(t_element *element)
+{
+	element->current_position = 0;
+	element->cost_to_top = 0;
+	element->cost_to_target = 0;
+	element->above_median = false;
+	element->target_node = NULL;
+	return (0);
+}
 
-// 	while (tab[i])
-// 		i++;
-// 	stack->sizea = i;
-// 	stack->a = malloc(sizeof(int) * i);
-// 	while (i > 0)
-// 	{
-// 		i--;
-// 		while (tab[i][j])
-// 		{
-// 			if ((tab[i][j] < '0' || tab[i][j] > '9') && tab[i][j] != ' ')
-// 			{
-// 				ft_putstr_fd("Error2\n", 2);
-// 				exit(0);
-// 			}
-// 			j++;
-// 		}
-// 		stack->a[i] = ft_atoi(tab[i]);
-// 		// printf("%d\n", stacka[i]);
-// 	}
-// 	// return (stack->a);
-// }
+// initializes the stack_b head list, the list remains empty for now
 
-// t_list	**fill_args_in_pile(int ac, char **av, t_stack *stack)
-// {
-// 	t_control *control = control_init();
-// 	insertion(control, nb);
-// 	t_list **lista;
-// 	int	i;
-// 	int	j;
+t_list	*stack_b_init(void)
+{
+	t_list	*stack_b;
 
-// 	i = 1;// void insertion(t_list *stack_a, int nvNombre)
-// {
-//     t_element *new = malloc(sizeof(*new));
-	// pourquoi pas malloc de t_element?
-//     if (stack_a == NULL || new == NULL)
-//     {
-//         exit(EXIT_FAILURE);
-//     }
-//     new->nb = nvNombre;
-// 	new->next = NULL;
+	stack_b = malloc(sizeof(*stack_b));
+	if (stack_b == NULL)
+	{
+		return(ft_putstr_fd("LA", 2), NULL);
+	}
+	stack_b->first = NULL;
+	stack_b->size = ft_lstsize(stack_b->first);
+	// printf("size_b=%d\n", stack_b->size);
+	// printf("first=%p\n", stack_b->first);
+	return (stack_b);
+}
 
-//     new->next = stack_a->first;
-//     stack_a->first = new;
-// }
-// 	j = 0;
-// 	stack->sizea = ac - 1;
-// 	lista = malloc(sizeof(t_list *));
-// 	t_list *element = ft_lstnew(ft_atoi(av[i]));
-// 	*lista = element;
-// 	while (i < stack->sizea)
-// 	{
-// 		while (av[i][j])
-// 		{
-// 			if ((av[i][j] < '0' || av[i][j] > '9') && av[i][j] != ' ')
-// 				return (ft_putstr_fd("Error\n", 2), NULL);
-// 			j++;
-// 		}
-// 		i++;
-// 		ft_lstadd_back(lista, ft_lstnew(ft_atoi(av[i])));
-// 	}
-// 	return (lista);
-// }
-
-// t_list	**create_empty_list(t_stack *stack)
-// {
-// 	t_list **listb;
-// 	// int nb;
-// 	int i = 0;
-
-// 	listb = malloc(sizeof(t_list *));
-// 	t_list *element = ft_lstnew(NULL);
-// 	*listb = element;
-// 	while (i < stack->sizea)
-// 	{
-// 		i++;
-// 		ft_lstadd_back(listb, ft_lstnew(NULL));
-// 	}
-// 	return (listb);
-// }
-
-// void insertion(t_list *stack_a, int nvNombre)
-// {
-//     t_element *new = malloc(sizeof(*new));
-	// pourquoi pas malloc de t_element?
-//     if (stack_a == NULL || new == NULL)
-//     {
-//         exit(EXIT_FAILURE);
-//     }
-//     new->nb = nvNombre;
-// 	new->next = NULL;
-
-//     new->next = stack_a->first;
-//     stack_a->first = new;
-// }
+t_element	*identify_biggest(t_list *stack)
+{
+	t_element *element;
+	t_element *biggest;
+	
+	element = stack->first;
+	biggest = malloc(sizeof(t_element));
+	biggest->nb = INT_MIN;
+	biggest->next = NULL;
+	while (element)
+	{
+		if (element->nb > biggest->nb)
+		{
+			if (biggest->nb == INT_MIN)
+				free(biggest);
+			biggest = element;
+		}
+		element = element->next;
+	}
+	// printf("biggest=%ld\n", biggest->nb);
+	return (biggest);
+}

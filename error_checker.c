@@ -6,11 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:55:29 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 17:55:54 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:15:06 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// check number in double
 
 int	check_double(t_list *stack)
 {
@@ -21,6 +23,7 @@ int	check_double(t_list *stack)
 	element = NULL;
 	element2 = NULL;
 	element = stack->first;
+	// printf("elementdd=%ld\n", element->nb);
 	while (element)
 	{
 		element2 = element->next;
@@ -39,6 +42,8 @@ int	check_double(t_list *stack)
 	return (0);
 }
 
+// check that numbers are not above int max or below int min
+
 int	check_int(char **av)
 {
 	int	i;
@@ -55,6 +60,8 @@ int	check_int(char **av)
 	}
 	return (0);
 }
+
+// check that there is no letters in arguments
 
 int	check_letters(char **av)
 {
