@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:52:37 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 14:36:55 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:16:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,11 @@ static char	*ft_createlines(const char *s, char c)
 	return (line);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_fill_tab(const char *s, char c, char **tab)
 {
 	unsigned int	i;
-	char			**tab;
 
 	i = 1;
-	if (!s)
-		return (NULL);
-	tab = malloc(sizeof(char *) * (ft_countwords(s, c) + 2));
-
-	if (!tab)
-		return (NULL);
 	tab[0] = malloc(sizeof(char *));
 	if (!tab[0])
 		return (NULL);
@@ -89,7 +82,7 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[i] = ft_createlines(s, c);
 			if (!tab[i])
-				return (ft_freetab(tab));
+				return (ft_freetab(tab), NULL);
 			i++;
 			while (*s && *s != c)
 				s++;
@@ -99,21 +92,17 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	// ft_split("hello!", ' ');
-// 	char **tab;
-// 	int i = 0;
+char	**ft_split(char const *s, char c)
+{
+	unsigned int	i;
+	char			**tab;
 
-// 	tab = ft_split("hello!", ' ');
-// 	while (tab[i])
-// 	{
-// 		printf("%s", tab[i]);
-// 		i++;
-// 	}
-// 	printf("%s", tab[i]);
-// 	ft_freetab(tab);
-// 	// char *test = NULL;
-// 	// printf("%d", ft_countwords(test, ' '));
-// }
+	i = 1;
+	if (!s)
+		return (NULL);
+	tab = malloc(sizeof(char *) * (ft_countwords(s, c) + 2));
+	if (!tab)
+		return (NULL);
+	tab = ft_fill_tab(s, c, tab);
+	return (tab);
+}

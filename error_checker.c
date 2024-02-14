@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:55:29 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/09 14:15:06 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:20:48 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	check_double(t_list *stack)
 	element = NULL;
 	element2 = NULL;
 	element = stack->first;
-	// printf("elementdd=%ld\n", element->nb);
 	while (element)
 	{
 		element2 = element->next;
@@ -31,10 +30,7 @@ int	check_double(t_list *stack)
 		while (element2)
 		{
 			if (nb == element2->nb)
-			{
-				ft_putstr_fd("Error\n", 2);
-				return (1);
-			}
+				return (ft_putstr_fd("Error\n", 2), 1);
 			element2 = element2->next;
 		}
 		element = element->next;
@@ -52,10 +48,7 @@ int	check_int(char **av)
 	while (av[i])
 	{
 		if (ft_atoi(av[i]) > 2147483647)
-		{
-			ft_putstr_fd("Error\n", 2);
-			return (1);
-		}
+			return (ft_putstr_fd("Error\n", 2), 1);
 		i++;
 	}
 	return (0);

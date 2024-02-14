@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 15:48:57 by ctruchot          #+#    #+#              #
-#    Updated: 2024/02/09 12:36:41 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/02/14 18:01:48 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,17 @@ SRC = main.c \
 		error_checker.c \
 		utils.c \
 		utils_lists.c \
+		ft_printf.c \
+		ft_print_nbr.c \
 		instructions1.c \
 		instructions2.c \
 		instructions3.c \
-		clear.c \
 		ft_split.c \
 		order_list.c \
-		fill_info.c
+		order_list2.c \
+		fill_updates_stacks.c \
+		get_info.c \
+		get_info2.c
 
 OBJ = $(SRC:%.c=%.o)
 

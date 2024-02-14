@@ -6,12 +6,11 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:55:29 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/07 13:55:56 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:46:21 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h> // remplacer par ft_printf
 
 // sa (swap a) : Intervertit les 2 premiers éléments au sommet de la pile a.
 // Ne fait rien s’il n’y en a qu’un ou aucun.
@@ -22,40 +21,48 @@
 // je fais pointer la sauvegarde integree a la liste (donc en 2e) 
 // vers le 3e noeud
 
-int	ft_swap_a(t_list *stack)
+int	ft_swap_a(t_list *stack_a, t_list *stack_b, int call)
 {
 	t_element	*buff;
 	t_element	*third;
 
-	if (stack->size < 2)
+	if (stack_a->size < 2)
 		return (1);
-	buff = stack->first;
-	third = stack->first->next->next;
-	buff = stack->first;
-	stack->first = stack->first->next;
-	stack->first->next = buff;
-	stack->first->next->next = third;
-	printf("sa\n");
+	buff = stack_a->first;
+	third = stack_a->first->next->next;
+	buff = stack_a->first;
+	stack_a->first = stack_a->first->next;
+	stack_a->first->next = buff;
+	stack_a->first->next->next = third;
+	if (call == 0)
+	{
+		ft_printf("sa\n");
+		update_stacks_info(stack_a, stack_b);
+	}
 	return (0);
 }
 
 // sb (swap b ) : Intervertit les 2 premiers éléments au sommet de la pile b.
 // Ne fait rien s’il n’y en a qu’un ou aucun.
 
-int	ft_swap_b(t_list *stack)
+int	ft_swap_b(t_list *stack_a, t_list *stack_b, int call)
 {
 	t_element	*buff;
 	t_element	*third;
 
-	if (stack->size < 2)
+	if (stack_b->size < 2)
 		return (1);
-	buff = stack->first;
-	third = stack->first->next->next;
-	buff = stack->first;
-	stack->first = stack->first->next;
-	stack->first->next = buff;
-	stack->first->next->next = third;
-	printf("sb\n");
+	buff = stack_b->first;
+	third = stack_b->first->next->next;
+	buff = stack_b->first;
+	stack_b->first = stack_b->first->next;
+	stack_b->first->next = buff;
+	stack_b->first->next->next = third;
+	if (call == 0)
+	{
+		ft_printf("sb\n");
+		update_stacks_info(stack_a, stack_b);
+	}
 	return (0);
 }
 
@@ -63,9 +70,11 @@ int	ft_swap_b(t_list *stack)
 
 int	ft_ss(t_list *stack_a, t_list *stack_b)
 {
-	if (ft_swap_a(stack_a) != 0 || ft_swap_b(stack_b) != 0)
+	if (ft_swap_a(stack_a, stack_b, 1) != 0
+		|| ft_swap_b(stack_a, stack_b, 1) != 0)
 		return (1);
-	printf("ss\n");
+	ft_printf("ss\n");
+	update_stacks_info(stack_a, stack_b);
 	return (0);
 }
 
@@ -89,7 +98,8 @@ int	ft_push_a(t_list *stack_a, t_list *stack_b)
 	stack_b->first = buff_b;
 	stack_b->size -= 1;
 	stack_a->size += 1;
-	printf("pa\n");
+	ft_printf("pa\n");
+	update_stacks_info(stack_a, stack_b);
 	return (0);
 }
 
@@ -113,6 +123,7 @@ int	ft_push_b(t_list *stack_a, t_list *stack_b)
 	stack_a->first = buff_a;
 	stack_a->size -= 1;
 	stack_b->size += 1;
-	printf("pb\n");
+	ft_printf("pb\n");
+	update_stacks_info(stack_a, stack_b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:44:07 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/08 18:38:15 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:56:12 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_element	*ft_lstnew(int nb)
 
 	element = malloc(sizeof(t_element));
 	if (element == NULL)
-		return (ft_putstr_fd("Error malloc\n", 2), NULL); // pertinnt ?
+		return (NULL);
 	element->nb = nb;
 	init_nodes_to_zero(element);
 	element->next = NULL;
@@ -34,12 +34,15 @@ t_element	*ft_lstlast(t_element *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_element **lst, t_element *new)
+int	ft_lstadd_back(t_element **lst, t_element *new)
 {
+	if (new == NULL)
+		return (1);
 	if ((*lst) == NULL)
 		*lst = new;
 	else
 		ft_lstlast(*lst)->next = new;
+	return (0);
 }
 
 t_element	*ft_lstalmostlast(t_element *lst)

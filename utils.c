@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:11:47 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/09 14:03:12 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:59:07 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,6 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-}
-
-void	print_list(t_list *stack)
-{
-	t_element	*actuel;
-
-	if (stack == NULL)
-	{
-		return(ft_putstr_fd("LA", 2));
-	}
-	// printf("dd%ld\n", stack->first->nb);
-	actuel = stack->first;
-	while (actuel != NULL)
-	{
-		printf("%ld -> ", actuel->nb);
-		actuel = actuel->next;
-	}
-	printf("NULL\n");
 }
 
 long int	ft_atoi(const char *nptr)
@@ -79,18 +61,6 @@ long int	ft_atoi(const char *nptr)
 	return (r);
 }
 
-void	print_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("tab%s", tab[i]);
-		i++;
-	}
-}
-
 int	free_tab(char **tab)
 {
 	int	i;
@@ -103,4 +73,43 @@ int	free_tab(char **tab)
 	}
 	free(tab);
 	return (0);
+}
+
+int	free_list(t_list *stack)
+{
+	t_element	*last;
+	t_element	*almostlast;
+
+	last = NULL;
+	almostlast = NULL;
+	if (stack->first == NULL)
+		return (free(stack), 1);
+	while (stack->first->next != NULL)
+	{
+		last = ft_lstlast(stack->first);
+		almostlast = ft_lstalmostlast(stack->first);
+		almostlast->next = NULL;
+		free(last);
+	}
+	free(stack->first);
+	free(stack);
+	return (0);
+}
+
+// a supprimer
+void	print_list(t_list *stack)
+{
+	t_element	*actuel;
+
+	if (stack == NULL)
+	{
+		return (ft_putstr_fd("LA", 2));
+	}
+	actuel = stack->first;
+	while (actuel != NULL)
+	{
+		printf("%ld -> ", actuel->nb);
+		actuel = actuel->next;
+	}
+	printf("NULL\n");
 }
