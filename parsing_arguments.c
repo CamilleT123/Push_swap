@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:23:42 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/14 18:02:09 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:23:31 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ t_list	*parsing_string(char **av, t_list *stack_a)
 	strarg = NULL;
 	strarg = ft_split(av[1], ' ');
 	if (strarg == NULL)
+	{
+		ft_putstr_fd("Error\n", 2);
 		exit (1);
+	}
 	while (strarg[i])
 		i++;
-	stack_a = stack_a_init(i, strarg);
+	stack_a = stack_a_init(i, strarg, 1);
 	free_tab(strarg);
 	return (stack_a);
 }
@@ -36,27 +39,26 @@ t_list	*parsing_string(char **av, t_list *stack_a)
 //  and each nodes of the list based on the arguments
 // and the fill_args_in_stack_a function
 
-t_list	*stack_a_init(int ac, char **av)
+t_list	*stack_a_init(int ac, char **av, int string)
 {
 	t_list	*stack_a;
 
 	stack_a = NULL;
-	if (check_letters(av) != 0)
+	if (check_letters(av) != 0 || check_int(av) != 0)
+	{
+		if (string == 1)
+			free_tab(av);
 		exit (1);
-	if (check_int(av) != 0)
-		exit (1);
+	}
 	stack_a = malloc(sizeof(*stack_a));
 	if (stack_a == NULL)
 		exit (1);
 	stack_a->first = NULL;
 	stack_a->first = fill_args_in_stack_a(ac, av);
-	if (stack_a->first == NULL)
+	if (stack_a->first == NULL || check_double(stack_a) != 0)
 	{
-		free_list(stack_a);
-		exit (1);
-	}
-	if (check_double(stack_a) != 0)
-	{
+		if (string == 1)
+			free_tab(av);
 		free_list(stack_a);
 		exit (1);
 	}
@@ -72,11 +74,9 @@ t_list	*stack_a_init(int ac, char **av)
 t_element	*fill_args_in_stack_a(int ac, char **av)
 {
 	int			i;
-	int			j;
 	t_element	*element;
 
 	i = 1;
-	j = 0;
 	element = ft_lstnew(ft_atoi(av[i]));
 	if (element == NULL)
 		return (NULL);

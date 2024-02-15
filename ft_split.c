@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:52:37 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/13 16:16:29 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:41:50 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,15 @@ char	**ft_fill_tab(const char *s, char c, char **tab)
 
 char	**ft_split(char const *s, char c)
 {
-	unsigned int	i;
 	char			**tab;
 
-	i = 1;
 	if (!s)
 		return (NULL);
 	tab = malloc(sizeof(char *) * (ft_countwords(s, c) + 2));
 	if (!tab)
 		return (NULL);
 	tab = ft_fill_tab(s, c, tab);
+	if (tab[1] == NULL)
+		return (ft_freetab(tab), NULL);
 	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:11:47 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/13 15:59:07 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:36:33 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,20 @@ int	free_list(t_list *stack)
 	return (0);
 }
 
-// a supprimer
-void	print_list(t_list *stack)
-{
-	t_element	*actuel;
+// // a supprimer
+// void	print_list(t_list *stack)
+// {
+// 	t_element	*actuel;
 
-	if (stack == NULL)
-	{
-		return (ft_putstr_fd("LA", 2));
-	}
-	actuel = stack->first;
-	while (actuel != NULL)
-	{
-		printf("%ld -> ", actuel->nb);
-		actuel = actuel->next;
-	}
-	printf("NULL\n");
-}
+// 	if (stack == NULL)
+// 	{
+// 		return (ft_putstr_fd("LA", 2));
+// 	}
+// 	actuel = stack->first;
+// 	while (actuel != NULL)
+// 	{
+// 		printf("%ld -> ", actuel->nb);
+// 		actuel = actuel->next;
+// 	}
+// 	printf("NULL\n");
+// }

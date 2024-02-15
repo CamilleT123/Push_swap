@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:06 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/14 17:58:19 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:21:11 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ typedef struct s_element
 	struct s_element	*next;
 }						t_element;
 
-// necessaire d'avoir une tete de liste de type different ?
-// possible de faire un pointeur head_a sur le premier element
-// et tail_a sur le dernier ?
-
 typedef struct s_list
 {
 	int					size;
@@ -43,7 +39,7 @@ typedef struct s_list
 }						t_list;
 
 t_list				*parsing_string(char **av, t_list *stack_a);
-t_list				*stack_a_init(int ac, char **av);
+t_list				*stack_a_init(int ac, char **av, int string);
 t_list				*stack_b_init(t_list *stack_a);
 t_element			*fill_args_in_stack_a(int ac, char **av);
 int					init_nodes_to_zero(t_element *element);
@@ -63,6 +59,7 @@ int					finish_move(t_element *cheapest, t_list *stack_a,
 						t_list *stack_b);
 int					move_nodes(t_element *cheapest, t_list *stack_a,
 						t_list *stack_b);
+int					place_bigger_down(t_list *stack_a, t_list *stack_b);
 
 int					stack_a_fill_info(t_list *stack_a);
 int					stack_b_fill_info(t_list *stack_b, t_list *stack_a);
