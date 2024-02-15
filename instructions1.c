@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:55:29 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/13 15:46:21 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:10:45 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_swap_b(t_list *stack_a, t_list *stack_b, int call)
 	return (0);
 }
 
-// // ss : sa et sb en même temps.
+// ss : sa et sb en même temps.
 
 int	ft_ss(t_list *stack_a, t_list *stack_b)
 {
@@ -78,8 +78,8 @@ int	ft_ss(t_list *stack_a, t_list *stack_b)
 	return (0);
 }
 
-// // pa (push a) : Prend le premier élément au sommet de b et le met sur a.
-// // Ne fait rien si b est vide.
+// pa (push a) : Prend le premier élément au sommet de b et le met sur a.
+// Ne fait rien si b est vide.
 
 int	ft_push_a(t_list *stack_a, t_list *stack_b)
 {
@@ -103,8 +103,8 @@ int	ft_push_a(t_list *stack_a, t_list *stack_b)
 	return (0);
 }
 
-// // pb (push b) : Prend le premier élément au sommet de a et le met sur b.
-// // Ne fait rien si a est vide.
+// pb (push b) : Prend le premier élément au sommet de a et le met sur b.
+// Ne fait rien si a est vide.
 
 int	ft_push_b(t_list *stack_a, t_list *stack_b)
 {
@@ -124,6 +124,5 @@ int	ft_push_b(t_list *stack_a, t_list *stack_b)
 	stack_a->size -= 1;
 	stack_b->size += 1;
 	ft_printf("pb\n");
-	update_stacks_info(stack_a, stack_b);
 	return (0);
 }

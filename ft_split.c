@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:52:37 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/15 11:41:50 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:19:38 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static char	*ft_createlines(const char *s, char c)
 	line[i] = '\0';
 	return (line);
 }
+
+// the array created include a first empty line to simulate av
 
 char	**ft_fill_tab(const char *s, char c, char **tab)
 {

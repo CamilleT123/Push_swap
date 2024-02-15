@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:36:02 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/13 14:36:15 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:20:46 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // ra (rotate a) : Décale d’une position vers le haut 
 // tous les élements de la pile a.
-// // Le premier élément devient le dernier.
+// Le premier élément devient le dernier.
 
 int	ft_rotate_a(t_list *stack_a, t_list *stack_b, int call)
 {
@@ -60,7 +60,7 @@ int	ft_rotate_b(t_list *stack_a, t_list *stack_b, int call)
 	return (0);
 }
 
-// // rr : ra et rb en même temps.
+// rr : ra et rb en même temps.
 
 int	ft_rr(t_list *stack_a, t_list *stack_b)
 {
@@ -74,12 +74,13 @@ int	ft_rr(t_list *stack_a, t_list *stack_b)
 
 // rra (reverse rotate a) : Décale d’une position vers le bas 
 // tous les élements de
-// // la pile a. Le dernier élément devient le premier.
+// la pile a. Le dernier élément devient le premier.
 
 // je sauvegarde le premier noeud
 // je place le dernier noeud en prems
 // je fais pointer le nouveau prems vers l'ancien premier qui 
 // est decale vers le bas
+
 int	ft_reverse_rotate_a(t_list *stack_a, t_list *stack_b, int call)
 {
 	t_element	*buff;
@@ -102,9 +103,10 @@ int	ft_reverse_rotate_a(t_list *stack_a, t_list *stack_b, int call)
 	}
 	return (0);
 }
+
 // rrb (reverse rotate b) : Décale d’une position 
 // vers le bas tous les élements de
-// // la pile b. Le dernier élément devient le premier.
+// la pile b. Le dernier élément devient le premier.
 
 int	ft_reverse_rotate_b(t_list *stack_a, t_list *stack_b, int call)
 {

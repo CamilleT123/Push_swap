@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:43:29 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/14 17:55:45 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:07:41 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	order_three_a(t_list *stack_a, t_list *stack_b)
 // or if what remains in a is ordered
 // if only 3 nodes remain in stack_a, function order_three_a orders
 // the remaining nodes.
-// fill the nodes info of both stacks,
 // identify the cheapest node to move next to its target node and moves the node
 
 int	ordering_first_part(t_list *stack_a, t_list *stack_b)
@@ -59,6 +58,7 @@ int	ordering_first_part(t_list *stack_a, t_list *stack_b)
 		ft_push_b(stack_a, stack_b);
 	if (stack_a->size == 3 && check_order(stack_a->first) != 0)
 		order_three_a(stack_a, stack_b);
+	update_stacks_info(stack_a, stack_b);
 	cheapest = identify_cheapest(stack_b);
 	move_nodes(cheapest, stack_a, stack_b);
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:55:29 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/13 15:20:48 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:18:41 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// check number in double
+// check if some numbers are in double
 
 int	check_double(t_list *stack)
 {

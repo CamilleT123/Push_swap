@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:23:42 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/15 12:23:31 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:18:13 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 // when argument is a string, creates an array with the numbers of the string
 // and send it to stack_a_init as if it was arguments
+// first string of the array is empty to simulate arguments where 
+// the first one is the exec file
 
 t_list	*parsing_string(char **av, t_list *stack_a)
 {
@@ -36,8 +38,8 @@ t_list	*parsing_string(char **av, t_list *stack_a)
 }
 
 // initialize stack_a list head, checks the errors in the arguments
-//  and each nodes of the list based on the arguments
-// and the fill_args_in_stack_a function
+//  and each node of the list based on the arguments
+// using the fill_args_in_stack_a function
 
 t_list	*stack_a_init(int ac, char **av, int string)
 {
@@ -89,7 +91,7 @@ t_element	*fill_args_in_stack_a(int ac, char **av)
 	return (element);
 }
 
-// initiates the rest of the data of the nodes to 0
+// initiates the rest of the data of the nodes to 0 or NULL
 
 int	init_nodes_to_zero(t_element *element)
 {

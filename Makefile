@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 15:48:57 by ctruchot          #+#    #+#              #
-#    Updated: 2024/02/14 18:01:48 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/02/15 17:45:00 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = main.c \
 		instructions3.c \
 		ft_split.c \
 		order_list.c \
-		order_list2.c \
+		move_nodes.c \
 		fill_updates_stacks.c \
 		get_info.c \
 		get_info2.c

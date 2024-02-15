@@ -6,12 +6,11 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:11:47 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/02/15 12:36:33 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:51:41 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
@@ -96,7 +95,8 @@ int	free_list(t_list *stack)
 	return (0);
 }
 
-// // a supprimer
+// #include <stdio.h>
+
 // void	print_list(t_list *stack)
 // {
 // 	t_element	*actuel;
